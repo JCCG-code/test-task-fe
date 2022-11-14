@@ -21,9 +21,24 @@ export default {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0px 244px 0px 244px;
+
+  // App max screen size
+  width: 65%;
+  height: 100vh;
 }
+
 * {
   margin: 0px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #f6f9ff;
+}
+
+main {
+  background: #ffffff;
+  box-shadow: 0px 36px 12px rgba(204, 204, 204, 0.25);
 }
 </style>
