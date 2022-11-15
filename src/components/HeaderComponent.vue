@@ -100,9 +100,15 @@ header {
     input[type="search"] {
       outline: none;
 
+      font-weight: 400;
+      font-size: 20;
+      line-height: 23px;
+      color: #000000;
+
       width: 231px;
       height: 32px;
       margin-right: 48px;
+      padding-left: 40px;
 
       background: #ffffff;
       border: 0px;
@@ -112,7 +118,8 @@ header {
     div {
       position: absolute;
       top: 33px;
-      margin-left: 17px;
+      margin-left: 15px;
+      margin-right: 8px;
       .search-icon {
         fill: #000000;
       }
