@@ -11,7 +11,12 @@
         <!-- Avatar -->
         <img :src="user.avatar_url" alt="user_avatar" />
         <!-- Username -->
-        <p id="username">{{ user.login }}</p>
+        <router-link
+          class="username-link"
+          :to="{ name: 'User', params: { username: user.login } }"
+        >
+          <p id="username">{{ user.login }}</p>
+        </router-link>
         <!-- Icon and link wrap -->
         <div class="icon-link-wrap">
           <!-- Icon -->
@@ -88,7 +93,7 @@ main {
     display: grid;
     grid-template-columns: 200px 200px 200px 200px;
     grid-template-rows: 200px 200px;
-    gap: 37px;
+    gap: 37px 60px;
 
     div {
       display: flex;
@@ -103,15 +108,21 @@ main {
         border-radius: 50%;
       }
 
-      #username {
-        text-align: center;
-        margin-bottom: 2px;
+      .username-link {
+        text-decoration: none;
 
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 23px;
+        #username {
+          text-align: center;
+          text-decoration: none;
 
-        color: #000000;
+          margin-bottom: 2px;
+
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 23px;
+
+          color: #000000;
+        }
       }
       .icon-link-wrap {
         display: flex;

@@ -1,7 +1,7 @@
 <template>
   <footer>
     <!-- GitHub icon footer -->
-    <div id="iconmonstr-github-1">
+    <a id="iconmonstr-github-1" href="https://github.com" target="_blank">
       <svg
         width="40"
         height="40"
@@ -14,7 +14,7 @@
           fill="white"
         />
       </svg>
-    </div>
+    </a>
     <!-- Footer message -->
     <p>© All rights reserved, 2022</p>
   </footer>

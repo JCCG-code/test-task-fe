@@ -3,7 +3,7 @@
   <header>
     <!-- Title and logo -->
     <div class="title-logo-header">
-      <div>
+      <router-link class="logo-header" to="/">
         <svg
           width="40"
           height="40"
@@ -16,7 +16,7 @@
             fill="white"
           />
         </svg>
-      </div>
+      </router-link>
       <p>Github Userboard</p>
     </div>
     <!-- Search input -->
@@ -71,7 +71,7 @@ header {
     gap: 16px;
     margin-left: 48px;
 
-    div {
+    .logo-header {
       width: 40px;
       height: 40px;
       flex: none;

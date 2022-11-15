@@ -5,10 +5,12 @@ import UserView from "../views/UserView.vue";
 const routes = [
   {
     path: "/",
+    name: "Home",
     component: HomeView,
   },
   {
     path: "/:username",
+    name: "User",
     component: UserView,
   },
 ];
