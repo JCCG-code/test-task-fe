@@ -7,7 +7,7 @@
     </header>
     <!-- Home section -->
     <section>
-      <div v-for="user in users" :key="user.id">
+      <div v-for="user in getUsers" :key="user.id">
         <!-- Avatar -->
         <img :src="user.avatar_url" alt="user_avatar" />
         <!-- Username -->
@@ -45,24 +45,27 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "HomeView",
-  data() {
-    return {
-      users: [],
-    };
-  },
   async created() {
-    await this.axios
-      .get("/users?per_page=8")
-      .then((res) => {
-        if (res.data != null) {
-          this.users = res.data;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (Object.keys(this.$store.state.users).length == 0) {
+      console.log("I'm doing users request...");
+      await this.axios
+        .get("/users?per_page=8")
+        .then((res) => {
+          if (res.data != null) {
+            this.$store.dispatch("loadUsers", res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  },
+  computed: {
+    ...mapGetters(["getUsers"]),
   },
 };
 </script>
@@ -93,8 +96,9 @@ main {
     display: grid;
     grid-template-columns: 200px 200px 200px 200px;
     grid-template-rows: 200px 200px;
-    gap: 37px 60px;
+    gap: 37px 50px;
 
+    // User wrap
     div {
       display: flex;
       flex-direction: column;
@@ -123,7 +127,12 @@ main {
 
           color: #000000;
         }
+
+        #username:hover {
+          text-shadow: 0px 0px 5px #bababa;
+        }
       }
+
       .icon-link-wrap {
         display: flex;
         flex-direction: row;
@@ -135,6 +144,7 @@ main {
 
           margin-right: 4.67px;
         }
+
         a {
           text-decoration: none;
           font-weight: 400;
@@ -142,6 +152,10 @@ main {
           line-height: 14px;
 
           color: #54a3ff;
+        }
+
+        a:hover {
+          text-decoration-line: underline;
         }
       }
     }

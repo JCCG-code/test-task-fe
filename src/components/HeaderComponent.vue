@@ -20,7 +20,7 @@
       <p>Github Userboard</p>
     </div>
     <!-- Search input -->
-    <div class="search-wrap">
+    <div class="search-wrap" v-if="isHome">
       <input type="search" name="search-user" id="search-user" />
       <div>
         <svg
@@ -46,6 +46,11 @@
 <script>
 export default {
   name: "HeaderComponent",
+  computed: {
+    isHome() {
+      return this.$route.name === "Home";
+    },
+  },
 };
 </script>
 
