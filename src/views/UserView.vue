@@ -130,7 +130,7 @@ main {
     position: absolute;
 
     margin-top: -572px;
-    margin-right: 880px;
+    margin-right: 1080px;
   }
 
   img {
@@ -147,7 +147,7 @@ main {
     margin-top: 34px;
   }
   section {
-    width: 620px;
+    width: 820px;
     height: 140px;
     margin-top: 34px;
 
@@ -156,7 +156,7 @@ main {
     // Indiv repo
     div {
       display: grid;
-      grid-template-columns: 430px 100px 70px;
+      grid-template-columns: 630px 100px 70px;
       align-items: center;
 
       margin-bottom: 8px;
