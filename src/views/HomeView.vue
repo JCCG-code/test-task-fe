@@ -7,9 +7,12 @@
     </header>
     <!-- Home section -->
     <section>
-      <div v-for="user in getUsers" :key="user.id">
+      <div v-for="user in filteredUsersByUsername" :key="user.id">
         <!-- Avatar -->
-        <img :src="user.avatar_url" alt="user_avatar" />
+        <div v-if="user.avatar_url == null">
+          <img src="../assets/rubber-duck.png" alt="Duck image" />
+        </div>
+        <img v-else :src="user.avatar_url" alt="user_avatar" />
         <!-- Username -->
         <router-link
           class="username-link"
@@ -41,6 +44,13 @@
         </div>
       </div>
     </section>
+    <!-- Users not found message -->
+    <div
+      class="user-not-found-message"
+      v-if="filteredUsersByUsername.length === 0"
+    >
+      <p>Users not found</p>
+    </div>
   </main>
 </template>
 
@@ -51,9 +61,8 @@ export default {
   name: "HomeView",
   async created() {
     if (Object.keys(this.$store.state.users).length == 0) {
-      console.log("I'm doing users request...");
       await this.axios
-        .get("/users?per_page=8")
+        .get("/users?per_page=32")
         .then((res) => {
           if (res.data != null) {
             this.$store.dispatch("loadUsers", res.data);
@@ -66,6 +75,11 @@ export default {
   },
   computed: {
     ...mapGetters(["getUsers"]),
+    filteredUsersByUsername() {
+      return this.getUsers.filter((user) =>
+        user.login.includes(this.$store.state.searchInput)
+      );
+    },
   },
 };
 </script>
@@ -89,6 +103,8 @@ main {
       line-height: 56px;
 
       color: #000000;
+
+      cursor: default;
     }
   }
 
@@ -97,6 +113,9 @@ main {
     grid-template-columns: 200px 200px 200px 200px;
     grid-template-rows: 200px 200px;
     gap: 37px 50px;
+
+    height: 440px;
+    overflow-y: scroll;
 
     // User wrap
     div {
@@ -159,6 +178,20 @@ main {
         }
       }
     }
+  }
+
+  // User not found message wrap
+  .user-not-found-message {
+    position: absolute;
+    top: 340px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+
+    cursor: default;
   }
 }
 </style>

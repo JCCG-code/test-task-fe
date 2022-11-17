@@ -2,8 +2,8 @@
   <!-- Header component -->
   <header>
     <!-- Title and logo -->
-    <div class="title-logo-header">
-      <router-link class="logo-header" to="/">
+    <router-link class="title-logo-header" to="/">
+      <div class="logo-header">
         <svg
           width="40"
           height="40"
@@ -16,12 +16,13 @@
             fill="white"
           />
         </svg>
-      </router-link>
+      </div>
       <p>Github Userboard</p>
-    </div>
+    </router-link>
+
     <!-- Search input -->
     <div class="search-wrap" v-if="isHome">
-      <input type="search" name="search-user" id="search-user" />
+      <input type="search" placeholder="Search to..." v-model="searchInput" />
       <div>
         <svg
           class="search-icon"
@@ -50,6 +51,14 @@ export default {
     isHome() {
       return this.$route.name === "Home";
     },
+    searchInput: {
+      get() {
+        return this.$store.state.searchInput;
+      },
+      set(value) {
+        this.$store.commit("setSearchInput", value);
+      },
+    },
   },
 };
 </script>
@@ -71,6 +80,8 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    text-decoration: none;
 
     padding: 0px;
     gap: 16px;
