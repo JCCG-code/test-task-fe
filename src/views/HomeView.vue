@@ -9,8 +9,20 @@
     <section>
       <div v-for="user in filteredUsersByUsername" :key="user.id">
         <!-- Avatar -->
-        <div v-if="user.avatar_url == null">
-          <img src="../assets/rubber-duck.png" alt="Duck image" />
+        <div class="duck-icon-wrap" v-if="user.avatar_url == null">
+          <svg
+            width="140"
+            height="140"
+            viewBox="0 0 140 140"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="70" cy="70" r="70" fill="#54A3FF" />
+          </svg>
+          <img
+            class="duck-image"
+            src="../assets/rubber-duck.png"
+            alt="Duck image"
+          />
         </div>
         <img v-else :src="user.avatar_url" alt="user_avatar" />
         <!-- Username -->
@@ -123,6 +135,16 @@ main {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      .duck-icon-wrap {
+        margin-bottom: 12px;
+        .duck-image {
+          margin-top: -120px;
+
+          width: 100px;
+          height: 100px;
+        }
+      }
 
       img {
         width: 140px;

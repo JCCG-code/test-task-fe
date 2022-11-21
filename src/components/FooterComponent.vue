@@ -53,8 +53,9 @@ footer {
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
-
     color: #ffffff;
+
+    cursor: default;
   }
 }
 </style>

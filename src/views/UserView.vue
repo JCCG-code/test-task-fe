@@ -19,7 +19,23 @@
       </router-link>
     </div>
     <!-- Avatar -->
-    <img :src="user.avatar_url" alt="user_avatar" />
+    <div class="duck-icon-wrap" v-if="user.avatar_url == null">
+      <svg
+        width="300"
+        height="300"
+        viewBox="0 0 300 300"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="150" cy="150" r="150" fill="#54A3FF" />
+      </svg>
+      <img
+        class="duck-image"
+        src="../assets/rubber-duck.png"
+        alt="Duck image"
+      />
+    </div>
+    <img v-else :src="user.avatar_url" alt="user_avatar" />
     <!-- Username title -->
     <h1>{{ $route.params.username }}</h1>
     <!-- User Repositories -->
@@ -133,6 +149,19 @@ main {
     margin-right: 1080px;
   }
 
+  .duck-icon-wrap {
+    margin-top: -50px;
+
+    .duck-image {
+      position: absolute;
+      margin-top: 30px;
+      margin-left: -280px;
+
+      width: 240px;
+      height: 240px;
+    }
+  }
+
   img {
     margin-top: -50px;
 
@@ -156,7 +185,7 @@ main {
     // Indiv repo
     div {
       display: grid;
-      grid-template-columns: 630px 100px 70px;
+      grid-template-columns: 600px 100px 70px;
       align-items: center;
 
       margin-bottom: 8px;
